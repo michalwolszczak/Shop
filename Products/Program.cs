@@ -1,4 +1,4 @@
-using Products.CsvReader;
+using Products.CsvReaders;
 using Products.Entities;
 using Products.Factory;
 using Products.Interfaces;
@@ -14,7 +14,7 @@ namespace Products
     {
         public static async Task Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);            
+            var builder = WebApplication.CreateBuilder(args);
 
             //utils
             builder.Services.AddTransient<ExceptionLoggerMiddleware>();
@@ -28,9 +28,9 @@ namespace Products
             builder.Services.AddTransient<IProductService, ProductService>();
 
             //readers
-            builder.Services.AddTransient<ICsvReader<Product>, ProductCsvReader>();
-            builder.Services.AddTransient<ICsvReader<Inventory>, InventoryCsvReader>();
-            builder.Services.AddTransient<ICsvReader<Price>, PriceCsvReader>();
+            builder.Services.AddTransient<ICsvReaderFactory<Product>, ProductCsvReaderFactory>();
+            builder.Services.AddTransient<ICsvReaderFactory<Inventory>, InventoryCsvReaderFactory>();
+            builder.Services.AddTransient<ICsvReaderFactory<Price>, PriceCsvReaderFactory>();
 
 
             // Filters

@@ -5,14 +5,17 @@ using Products.Mappers;
 using System.Globalization;
 using System.Text;
 
-namespace Products.CsvReader
+namespace Products.CsvReaders
 {
     public class PriceCsvReader : ICsvReader<Price>
     {
-        public IEnumerable<Price> Read(string path)
+        private readonly StreamReader _reader;
+        private readonly CsvReader _csv;
+
+        public PriceCsvReader(string path)
         {
-            using var reader = new StreamReader(path, Encoding.UTF8, true);
-            var config = new CsvHelper.Configuration.CsvConfiguration(new CultureInfo("pl-PL"))
+            _reader = new StreamReader(path, Encoding.UTF8, true);
+            var config = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 MissingFieldFound = null,
                 HeaderValidated = null,
@@ -23,11 +26,22 @@ namespace Products.CsvReader
                 ShouldSkipRecord = ShouldSkipRecord
             };
 
-            using var csv = new CsvHelper.CsvReader(reader, config);
+            _csv = new CsvReader(_reader, config);
+            _csv.Context.RegisterClassMap<PriceMapper>();
+        }
 
-            csv.Context.RegisterClassMap<PriceMapper>();
+        public IEnumerable<Price> Read(string path)
+        {
+            foreach (var record in _csv.GetRecords<Price>())
+            {
+                yield return record;
+            }
+        }
 
-            return csv.GetRecords<Price>().ToList();
+        public void Dispose()
+        {
+            _csv.Dispose();
+            _reader.Dispose();
         }
 
         private bool ShouldSkipRecord(ShouldSkipRecordArgs args)
@@ -37,6 +51,5 @@ namespace Products.CsvReader
 
             return args.Row.Parser.Record.All(string.IsNullOrWhiteSpace);
         }
-
     }
 }

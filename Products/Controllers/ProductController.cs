@@ -26,6 +26,7 @@ namespace Products.Controllers
         [SwaggerResponse(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails), ContentTypes = new string[] { "application/problem+json" })]
         public async Task<ActionResult<GetProductResponse>> GetProductBySku([Required][FromQuery] string sku)
         {
+            //middleware catch exception
             if (string.IsNullOrWhiteSpace(sku))
             {
                 return BadRequest("SKU cannot be null or empty.");

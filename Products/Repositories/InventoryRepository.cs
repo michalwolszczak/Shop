@@ -31,7 +31,6 @@ namespace Products.Repositories
                 Sku,
                 Unit,
                 Quantity,
-                Manufacturer,
                 Shipping,
                 ShippingCost
             ) VALUES (
@@ -39,7 +38,6 @@ namespace Products.Repositories
                 @Sku,
                 @Unit,
                 @Quantity,
-                @Manufacturer,
                 @Shipping,
                 @ShippingCost
             );";

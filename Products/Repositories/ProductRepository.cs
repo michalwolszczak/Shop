@@ -52,11 +52,25 @@ namespace Products.Repositories
         {
             string sql = @"
             INSERT INTO Products (
-                Id, Sku, Name, Ean, ProducerName, Category,
-                IsWire, Shipping, Available, IsVendor, DefaultImage)
+                Id, 
+                Sku,
+                Name, 
+                Ean, 
+                ProducerName, 
+                Category,
+                IsWire, 
+                Shipping, 
+                DefaultImage)
             VALUES (
-                @Id, @Sku, @Name, @Ean, @ProducerName, @Category,
-                @IsWire, @Shipping, @Available, @IsVendor, @DefaultImage);";
+                @Id, 
+                @Sku, 
+                @Name, 
+                @Ean, 
+                @ProducerName,
+                @Category,
+                @IsWire, 
+                @Shipping, 
+                @DefaultImage);";
 
             using var connection = await _dbConnectionFactory.CreateConnectionAsync();
             using var transaction = connection.BeginTransaction();

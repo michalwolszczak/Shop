@@ -4,14 +4,17 @@ using Products.Interfaces;
 using System.Globalization;
 using System.Text;
 
-namespace Products.CsvReader
+namespace Products.CsvReaders
 {
     public class ProductCsvReader : ICsvReader<Product>
     {
-        public IEnumerable<Product> Read(string path)
+        private readonly StreamReader _reader;
+        private readonly CsvReader _csv;
+
+        public ProductCsvReader(string path)
         {
-            using var reader = new StreamReader(path, Encoding.UTF8, true);
-            var config = new CsvHelper.Configuration.CsvConfiguration(new CultureInfo("pl-PL"))
+            _reader = new StreamReader(path, Encoding.UTF8, true);
+            var config = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 DetectDelimiter = true,
                 MissingFieldFound = null,
@@ -19,8 +22,22 @@ namespace Products.CsvReader
                 BadDataFound = null,
                 ShouldSkipRecord = ShouldSkipRecord
             };
-            using var csv = new CsvHelper.CsvReader(reader, config);
-            return csv.GetRecords<Product>().ToList();
+
+            _csv = new CsvReader(_reader, config);
+        }
+
+        public IEnumerable<Product> Read(string path)
+        {
+            foreach(var record in _csv.GetRecords<Product>())
+            {
+               yield return record;
+            }
+        }
+
+        public void Dispose()
+        {
+            _csv.Dispose();
+            _reader.Dispose();
         }
 
         private bool ShouldSkipRecord(ShouldSkipRecordArgs args)

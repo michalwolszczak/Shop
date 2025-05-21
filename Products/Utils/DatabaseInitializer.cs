@@ -27,8 +27,6 @@ namespace Products.Utils
                     Category TEXT,
                     IsWire INTEGER NOT NULL,
                     Shipping TEXT,
-                    Available INTEGER NOT NULL,
-                    IsVendor INTEGER NOT NULL,
                     DefaultImage TEXT
                 );
 
@@ -37,7 +35,6 @@ namespace Products.Utils
                     Sku TEXT NOT NULL PRIMARY KEY,
                     Unit TEXT,
                     Quantity INTEGER,
-                    Manufacturer TEXT,
                     Shipping TEXT,
                     ShippingCost REAL,
                     FOREIGN KEY (ProductId) REFERENCES Products(Id)
@@ -46,9 +43,6 @@ namespace Products.Utils
                 CREATE TABLE IF NOT EXISTS Prices (
                     Id TEXT PRIMARY KEY,
                     Sku TEXT NOT NULL,
-                    NettPrice REAL,
-                    NettPriceAfterDiscount REAL,
-                    VatRate REAL,
                     NettPriceAfterDiscountPerUnit REAL,
                     FOREIGN KEY (Sku) REFERENCES Inventory(Sku)
                 );
