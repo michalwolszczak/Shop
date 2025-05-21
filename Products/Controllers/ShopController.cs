@@ -29,6 +29,7 @@ namespace Products.Controllers
         [SwaggerResponse(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails), ContentTypes = new string[] { "application/problem+json" })]
         public async Task<IActionResult> Import()
         {
+            //just for POC
             await _productImportService.ImportAsync("https://rekturacjazadanie.blob.core.windows.net/zadanie/Products.csv", "Products.csv");
             await _inventoryImportService.ImportAsync("https://rekturacjazadanie.blob.core.windows.net/zadanie/Inventory.csv", "Inventory.csv");
             await _priceImportService.ImportAsync("https://rekturacjazadanie.blob.core.windows.net/zadanie/Prices.csv", "Prices.csv");

@@ -1,8 +1,8 @@
-﻿
-using Products.Entities;
+﻿using Products.Entities;
+using Products.Filters;
 using Products.Interfaces;
 
-namespace Products.Filters
+namespace Products.Factory
 {
     public class ProductCableAndDeliveryFilterFactory : IFilterFactory<Product>
     {

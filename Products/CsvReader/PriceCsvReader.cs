@@ -5,7 +5,7 @@ using Products.Mappers;
 using System.Globalization;
 using System.Text;
 
-namespace Products.Utils
+namespace Products.CsvReader
 {
     public class PriceCsvReader : ICsvReader<Price>
     {
@@ -23,7 +23,7 @@ namespace Products.Utils
                 ShouldSkipRecord = ShouldSkipRecord
             };
 
-            using var csv = new CsvReader(reader, config);
+            using var csv = new CsvHelper.CsvReader(reader, config);
 
             csv.Context.RegisterClassMap<PriceMapper>();
 

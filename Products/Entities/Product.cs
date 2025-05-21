@@ -28,12 +28,6 @@ namespace Products.Entities
         [Name("shipping")]
         public string Shipping { get; set; }
 
-        [Name("available")]
-        public int Available { get; set; }
-
-        [Name("is_vendor")]
-        public int IsVendor { get; set; }
-
         [Name("default_image")]
         public string DefaultImage { get; set; }
     }

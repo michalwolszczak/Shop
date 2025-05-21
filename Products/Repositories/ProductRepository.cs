@@ -35,7 +35,7 @@ namespace Products.Repositories
                     p.DefaultImage AS ImageUrl,
                     i.Quantity,
                     i.Unit,
-                    pr.NettPrice,
+                    pr.NettPriceAfterDiscountPerUnit AS NettPrice,
                     i.ShippingCost
                 FROM Products p
                 JOIN Inventory i ON i.ProductId = p.Id

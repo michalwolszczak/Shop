@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Products.Utils
+namespace Products.Factory
 {
     public interface IProblemDetailsFactory
     {

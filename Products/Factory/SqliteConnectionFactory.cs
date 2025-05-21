@@ -2,7 +2,7 @@
 using Products.Interfaces;
 using System.Data;
 
-namespace Products.Utils
+namespace Products.Factory
 {
     public class SqliteConnectionFactory : IDbConnectionFactory
     {

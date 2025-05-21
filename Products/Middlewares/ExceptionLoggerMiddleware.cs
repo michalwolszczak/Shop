@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.Text.Json;
 using System.Text;
-using Products.Utils;
+using Products.Factory;
 
 namespace Products.Middlewares
 {

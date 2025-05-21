@@ -12,8 +12,6 @@ namespace Products.Entities
         public string Unit { get; set; }
         [Name("qty")]
         public double Quantity { get; set; }
-        [Name("manufacturer_name")]
-        public string Manufacturer { get; set; }
         [Name("shipping")]
         public string Shipping { get; set; }
         [Name("shipping_cost")]

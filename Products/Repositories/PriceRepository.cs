@@ -17,9 +17,19 @@ namespace Products.Repositories
         {
             var sql = @"
             INSERT INTO Prices (
-                Id, Sku, NettPrice, NettPriceAfterDiscount, VatRate, NettPriceAfterDiscountPerUnit)
+                Id, 
+                Sku, 
+                NettPrice, 
+                NettPriceAfterDiscount, 
+                VatRate, 
+                NettPriceAfterDiscountPerUnit)
             VALUES (
-                @Id, @Sku, @NettPrice, @NettPriceAfterDiscount, @VatRate, @NettPriceAfterDiscountPerUnit);";
+                @Id, 
+                @Sku, 
+                @NettPrice, 
+                @NettPriceAfterDiscount, 
+                @VatRate, 
+                @NettPriceAfterDiscountPerUnit);";
 
             using var connection = await _dbConnectionFactory.CreateConnectionAsync();
             using var transaction = connection.BeginTransaction();
